@@ -7,14 +7,18 @@
 // Execute `rustlings hint traits1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
 impl AppendBar for String {
-    // TODO: Implement `AppendBar` for type `String`.
+    // This confused me, how can we make the parameter mutable if the trait does not specify it as
+    // mutable? I think the reason here is that it's not a reference so the variable is moved to
+    // the function, so we can do what we like with it, becaue the caller has lost control.
+    fn append_bar(mut self) -> Self {
+        self.push_str("Bar");
+        self
+    }
 }
 
 fn main() {
